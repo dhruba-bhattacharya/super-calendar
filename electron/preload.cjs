@@ -1,4 +1,4 @@
 const { contextBridge, ipcRenderer } = require('electron');
-contextBridge.exposeInMainWorld('calendar', {
+contextBridge.exposeInMainWorld('superCalendar', {
   captureWallpaperPreview: () => ipcRenderer.invoke('wallpaper:capture')
 });
