@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Calendar</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="app">
+      <header class="topbar">
+        <div>
+          <p class="eyebrow">All-in-one planning hub</p>
+          <h1>Calendar</h1>
+        </div>
+        <div class="top-actions">
+          <label class="search-box">
+            <span>⌕</span>
+            <input id="search-input" type="search" placeholder="Search anime, movies, shows, work…" />
+          </label>
+          <button id="open-settings" class="ghost-button" type="button">⚙ Settings</button>
+          <button id="add-event" class="primary-button" type="button">＋ Add</button>
+        </div>
+      </header>
+
+      <section class="workspace">
+        <section class="calendar-panel">
+          <div class="calendar-toolbar">
+            <div class="month-switcher">
+              <button id="prev-period" type="button" aria-label="Previous period">‹</button>
+              <div>
+                <h2 id="period-title">Month</h2>
+                <p id="period-subtitle">Click any date to add something there</p>
+              </div>
+              <button id="next-period" type="button" aria-label="Next period">›</button>
+            </div>
+            <div class="view-tabs" role="tablist" aria-label="Calendar view">
+              <button data-view="month" class="active" type="button">Month</button>
+              <button data-view="week" type="button">Week</button>
+              <button data-view="multi" type="button">Multi-month</button>
+              <button data-view="year" type="button">Year</button>
+            </div>
+          </div>
+          <div id="calendar-grid" class="calendar-grid"></div>
+        </section>
+
+        <aside class="side-panel">
+          <section class="card">
+            <div class="card-heading">
+              <h2>Upcoming</h2>
+              <label class="toggle-line">
+                <input id="event-days-only" type="checkbox" />
+                Event days only
+              </label>
+            </div>
+            <div id="upcoming-list" class="stack"></div>
+          </section>
+
+          <section class="card">
+            <h2>Categories</h2>
+            <div id="category-filters" class="category-list"></div>
+          </section>
+
+          <section class="card selected-card">
+            <h2 id="selected-title">Selected day</h2>
+            <div id="selected-list" class="stack"></div>
+            <button id="add-selected" class="primary-button full" type="button">＋ Add to selected date</button>
+          </section>
+        </aside>
+      </section>
+
+      <dialog id="event-dialog" class="modal">
+        <form id="event-form" method="dialog">
+          <div class="modal-header">
+            <h2>Add event</h2>
+            <button value="cancel" class="icon-button" type="button" data-close>×</button>
+          </div>
+          <label>Title<input id="event-title" required placeholder="Episode premiere, meeting, movie night…" /></label>
+          <label>Category<select id="event-category"></select></label>
+          <div class="two-columns">
+            <label>Date<input id="event-date" required type="date" /></label>
+            <label>Time<input id="event-time" type="time" /></label>
+          </div>
+          <label>Repeat<select id="repeat-mode"><option value="once">One-time event</option><option value="daily">Repeating daily</option><option value="weekly">Repeating weekly</option></select></label>
+          <div id="repeat-options" class="repeat-options hidden">
+            <label>Populate by<select id="repeat-ending"><option value="count">Total episodes/events</option><option value="until">End date</option></select></label>
+            <label id="repeat-count-wrap">Total count<input id="repeat-count" type="number" min="1" max="365" value="8" /></label>
+            <label id="repeat-until-wrap" class="hidden">Ends on<input id="repeat-until" type="date" /></label>
+          </div>
+          <label>Notes<textarea id="event-notes" rows="3" placeholder="Streaming service, link, reminders, location…"></textarea></label>
+          <menu class="modal-actions">
+            <button value="cancel" type="button" class="ghost-button" data-close>Cancel</button>
+            <button value="default" type="submit" class="primary-button">Save event</button>
+          </menu>
+        </form>
+      </dialog>
+
+      <dialog id="settings-dialog" class="modal settings-modal">
+        <form method="dialog">
+          <div class="modal-header">
+            <h2>Settings</h2>
+            <button value="cancel" class="icon-button" type="button" data-close>×</button>
+          </div>
+          <label>Accent color<select id="accent-select"><option value="#38bdf8">Blue</option><option value="#a78bfa">Violet</option><option value="#34d399">Green</option><option value="#f59e0b">Amber</option><option value="#f472b6">Pink</option></select></label>
+          <label>Month starts on<select id="week-start"><option value="0">Sunday</option><option value="1">Monday</option><option value="6">Saturday</option></select></label>
+          <label class="toggle-line"><input id="dense-mode" type="checkbox" /> Dense calendar cells</label>
+          <p class="muted">The app stays fully dark themed. Settings only sprinkle in small accent colors and layout preferences.</p>
+        </form>
+      </dialog>
+    </main>
+    <script src="app.js"></script>
+  </body>
+</html>
