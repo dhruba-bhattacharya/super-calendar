@@ -10,7 +10,7 @@ function createWindow() {
     height: 960,
     minWidth: 980,
     minHeight: 680,
-    title: 'Calendar',
+    title: 'Super Calendar',
     backgroundColor: '#090b12',
     titleBarStyle: 'hiddenInset',
     webPreferences: {
